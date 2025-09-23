@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:location_picker/location_picker.dart';
-import 'package:location_picker/location_picker_platform_interface.dart';
-import 'package:location_picker/location_picker_method_channel.dart';
+import 'package:location_picker_plus/location_picker.dart';
+import 'package:location_picker_plus/location_picker_platform_interface.dart';
+import 'package:location_picker_plus/location_picker_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockLocationPickerPlatform

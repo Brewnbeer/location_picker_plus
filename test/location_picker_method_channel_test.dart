@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:location_picker/location_picker_method_channel.dart';
+import 'package:location_picker_plus/location_picker_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

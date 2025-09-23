@@ -1,4 +1,4 @@
-name: location_picker
+name: location_picker_plus
 description: A highly customizable Flutter plugin for selecting country, state, and city with autocomplete and dropdown modes.
 version: 1.0.0
 homepage: https://github.com/adityasutar/location_picker
@@ -14,13 +14,8 @@ topics:
   - location
   - picker
   - country
-  - state
-  - city
   - autocomplete
-  - dropdown
-  - form
-  - ui
-  - widget
+  - flutter
 
 platforms:
   android:
