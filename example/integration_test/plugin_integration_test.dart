@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:location_picker/location_picker.dart';
+import 'package:location_picker_plus/location_picker_plus.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

@@ -3,7 +3,7 @@ import UIKit
 
 public class LocationPickerPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "location_picker", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "location_picker_plus", binaryMessenger: registrar.messenger())
     let instance = LocationPickerPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

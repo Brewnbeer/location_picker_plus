@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint location_picker.podspec` to validate before publishing.
+# Run `pod lib lint location_picker_plus.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'location_picker'
+  s.name             = 'location_picker_plus'
   s.version          = '0.0.1'
   s.summary          = 'A Flutter plugin for selecting country, state, and city'
   s.description      = <<-DESC
@@ -25,5 +25,5 @@ A Flutter plugin for selecting country, state, and city
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
   # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  # s.resource_bundles = {'location_picker_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  # s.resource_bundles = {'location_picker_plus_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
 end

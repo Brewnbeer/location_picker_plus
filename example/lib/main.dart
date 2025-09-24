@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:location_picker/location_picker.dart';
+import 'package:location_picker_plus/location_picker_plus.dart';
+import 'location_detector_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,23 +13,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Location Picker Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const LocationPickerDemo(),
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
+      home: const LocationPickerPlusDemo(),
     );
   }
 }
 
-class LocationPickerDemo extends StatefulWidget {
-  const LocationPickerDemo({super.key});
+class LocationPickerPlusDemo extends StatefulWidget {
+  const LocationPickerPlusDemo({super.key});
 
   @override
-  State<LocationPickerDemo> createState() => _LocationPickerDemoState();
+  State<LocationPickerPlusDemo> createState() => _LocationPickerPlusDemoState();
 }
 
-class _LocationPickerDemoState extends State<LocationPickerDemo> {
+class _LocationPickerPlusDemoState extends State<LocationPickerPlusDemo> {
   CountryModel? selectedCountry;
   StateModel? selectedState;
   CityModel? selectedCity;
@@ -51,7 +49,7 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
     'Default',
     'Material',
     'Cupertino',
-    'Custom'
+    'Custom',
   ];
 
   @override
@@ -61,6 +59,18 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
         title: const Text('Location Picker Demo'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.location_on),
+            tooltip: 'Live Location Demo',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LocationDetectorDemo(),
+                ),
+              );
+            },
+          ),
           PopupMenuButton<int>(
             icon: const Icon(Icons.palette),
             onSelected: (index) {
@@ -70,10 +80,8 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
             },
             itemBuilder: (context) => List.generate(
               _themes.length,
-              (index) => PopupMenuItem(
-                value: index,
-                child: Text(_themeNames[index]),
-              ),
+              (index) =>
+                  PopupMenuItem(value: index, child: Text(_themeNames[index])),
             ),
           ),
         ],
@@ -132,9 +140,17 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: 16),
-                    _buildSelectionInfo('Country', selectedCountry?.name, selectedCountry?.phoneCode),
+                    _buildSelectionInfo(
+                      'Country',
+                      selectedCountry?.name,
+                      selectedCountry?.phoneCode,
+                    ),
                     const SizedBox(height: 8),
-                    _buildSelectionInfo('State', selectedState?.name, selectedState?.stateCode),
+                    _buildSelectionInfo(
+                      'State',
+                      selectedState?.name,
+                      selectedState?.stateCode,
+                    ),
                     const SizedBox(height: 8),
                     _buildSelectionInfo('City', selectedCity?.name, null),
                   ],
@@ -155,9 +171,9 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
                     const SizedBox(height: 8),
                     Text(
                       'Start typing country, state, or city names to see instant suggestions',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
                     ),
                     const SizedBox(height: 16),
                     LocationPickerWidget(
@@ -175,7 +191,9 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
                       onCountryChanged: (country) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Selected Country: ${country?.name ?? 'None'}'),
+                            content: Text(
+                              'Selected Country: ${country?.name ?? 'None'}',
+                            ),
                             duration: const Duration(seconds: 1),
                           ),
                         );
@@ -183,7 +201,9 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
                       onStateChanged: (state) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Selected State: ${state?.name ?? 'None'}'),
+                            content: Text(
+                              'Selected State: ${state?.name ?? 'None'}',
+                            ),
                             duration: const Duration(seconds: 1),
                           ),
                         );
@@ -191,7 +211,9 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
                       onCityChanged: (city) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Selected City: ${city?.name ?? 'None'}'),
+                            content: Text(
+                              'Selected City: ${city?.name ?? 'None'}',
+                            ),
                             duration: const Duration(seconds: 1),
                           ),
                         );
@@ -285,19 +307,11 @@ class _LocationPickerDemoState extends State<LocationPickerDemo> {
         Expanded(
           child: Text(
             value ?? 'Not selected',
-            style: TextStyle(
-              color: value != null ? Colors.black : Colors.grey,
-            ),
+            style: TextStyle(color: value != null ? Colors.black : Colors.grey),
           ),
         ),
         if (extra != null)
-          Text(
-            extra,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 12,
-            ),
-          ),
+          Text(extra, style: const TextStyle(color: Colors.grey, fontSize: 12)),
       ],
     );
   }

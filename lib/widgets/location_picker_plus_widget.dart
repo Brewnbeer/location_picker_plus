@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import '../models/country_model.dart';
-import '../models/state_model.dart';
-import '../models/city_model.dart';
-import '../services/location_service.dart';
-import '../themes/location_picker_theme.dart';
+
+import 'package:flutter/material.dart';
+import 'package:location_picker_plus/models/city_model.dart';
+import 'package:location_picker_plus/models/country_model.dart';
+import 'package:location_picker_plus/models/state_model.dart';
+import 'package:location_picker_plus/services/location_service.dart';
+import 'package:location_picker_plus/themes/location_picker_plus_theme.dart';
+
 import 'autocomplete_dropdown.dart';
 
 class LocationPickerWidget extends StatefulWidget {
@@ -108,7 +110,9 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
     setState(() => _isLoadingCountries = true);
     try {
       final countries = await _locationService.loadCountries(
-        assetPath: widget.customCountryAssetPath ?? 'packages/location_picker/assets/country.json'
+        assetPath:
+            widget.customCountryAssetPath ??
+            'packages/location_picker_plus/assets/country.json',
       );
       setState(() {
         _countries = countries;
@@ -117,9 +121,9 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
     } catch (e) {
       setState(() => _isLoadingCountries = false);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading countries: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error loading countries: $e')));
       }
     }
   }
@@ -127,9 +131,11 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
   Future<void> _loadStates(String countryId) async {
     setState(() => _isLoadingStates = true);
     try {
-      if (widget.customStateAssetPath != null) {
-        await _locationService.loadStates(assetPath: widget.customStateAssetPath!);
-      }
+      await _locationService.loadStates(
+        assetPath:
+            widget.customStateAssetPath ??
+            'packages/location_picker_plus/assets/state.json',
+      );
       final states = await _locationService.getStatesByCountryId(countryId);
       setState(() {
         _states = states;
@@ -138,9 +144,9 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
     } catch (e) {
       setState(() => _isLoadingStates = false);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading states: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error loading states: $e')));
       }
     }
   }
@@ -148,9 +154,11 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
   Future<void> _loadCities(String stateId) async {
     setState(() => _isLoadingCities = true);
     try {
-      if (widget.customCityAssetPath != null) {
-        await _locationService.loadCities(assetPath: widget.customCityAssetPath!);
-      }
+      await _locationService.loadCities(
+        assetPath:
+            widget.customCityAssetPath ??
+            'packages/location_picker_plus/assets/city.json',
+      );
       final cities = await _locationService.getCitiesByStateId(stateId);
       setState(() {
         _cities = cities;
@@ -159,9 +167,9 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
     } catch (e) {
       setState(() => _isLoadingCities = false);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading cities: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error loading cities: $e')));
       }
     }
   }
@@ -262,7 +270,9 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
                 itemBuilder: (country) => _buildCountryItem(country),
                 searchFilter: (country, query) =>
                     country.name.toLowerCase().contains(query.toLowerCase()) ||
-                    country.sortName.toLowerCase().contains(query.toLowerCase()),
+                    country.sortName.toLowerCase().contains(
+                      query.toLowerCase(),
+                    ),
               ),
       ],
     );
@@ -371,8 +381,10 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
           const SizedBox(width: 8),
           Text(
             '+${country.phoneCode}',
-            style: LocationPickerStyle.getItemTextStyle(_theme, context)
-                .copyWith(color: Colors.grey[600]),
+            style: LocationPickerStyle.getItemTextStyle(
+              _theme,
+              context,
+            ).copyWith(color: Colors.grey[600]),
           ),
         ],
       ],
@@ -392,8 +404,10 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
           const SizedBox(width: 8),
           Text(
             state.stateCode!,
-            style: LocationPickerStyle.getItemTextStyle(_theme, context)
-                .copyWith(color: Colors.grey[600]),
+            style: LocationPickerStyle.getItemTextStyle(
+              _theme,
+              context,
+            ).copyWith(color: Colors.grey[600]),
           ),
         ],
       ],
@@ -411,11 +425,7 @@ class _LocationPickerWidgetState extends State<LocationPickerWidget> {
         ),
         if (city.isCapital) ...[
           const SizedBox(width: 8),
-          Icon(
-            Icons.star,
-            size: 16,
-            color: Colors.amber[600],
-          ),
+          Icon(Icons.star, size: 16, color: Colors.amber[600]),
         ],
       ],
     );
@@ -473,7 +483,8 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
     _allItems = List.from(widget.items);
     _filteredItems = _allItems;
     _animationController = AnimationController(
-      duration: widget.theme.animationDuration ?? const Duration(milliseconds: 200),
+      duration:
+          widget.theme.animationDuration ?? const Duration(milliseconds: 200),
       vsync: this,
     );
     _animation = CurvedAnimation(
@@ -598,7 +609,8 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
   }
 
   OverlayEntry _createOverlayEntry() {
-    final RenderBox renderBox = _dropdownKey.currentContext?.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        _dropdownKey.currentContext?.findRenderObject() as RenderBox;
     final size = renderBox.size;
 
     return OverlayEntry(
@@ -620,29 +632,40 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
                   constraints: BoxConstraints(
                     maxHeight: widget.theme.maxHeight ?? 200,
                   ),
-                  decoration: LocationPickerStyle.getContainerDecoration(widget.theme, context),
+                  decoration: LocationPickerStyle.getContainerDecoration(
+                    widget.theme,
+                    context,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (widget.theme.showSearchBox && widget.items.length > 5) ...[
+                      if (widget.theme.showSearchBox &&
+                          widget.items.length > 5) ...[
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: _searchController,
                             focusNode: _searchFocusNode,
                             autofocus: true,
-                            decoration: widget.theme.searchBoxDecoration ??
+                            decoration:
+                                widget.theme.searchBoxDecoration ??
                                 InputDecoration(
-                                  hintText: widget.theme.searchHint ?? 'Type to search...',
+                                  hintText:
+                                      widget.theme.searchHint ??
+                                      'Type to search...',
                                   prefixIcon: Icon(
                                     Icons.search,
-                                    color: widget.theme.iconColor ?? Colors.grey[600],
+                                    color:
+                                        widget.theme.iconColor ??
+                                        Colors.grey[600],
                                   ),
                                   suffixIcon: _currentQuery.isNotEmpty
                                       ? IconButton(
                                           icon: Icon(
                                             Icons.clear,
-                                            color: widget.theme.iconColor ?? Colors.grey[600],
+                                            color:
+                                                widget.theme.iconColor ??
+                                                Colors.grey[600],
                                             size: 18,
                                           ),
                                           onPressed: () {
@@ -652,11 +675,15 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
                                       : null,
                                   border: const OutlineInputBorder(),
                                   isDense: true,
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
                                 ),
                           ),
                         ),
-                        if (_filteredItems.isEmpty && _currentQuery.isNotEmpty) ...[
+                        if (_filteredItems.isEmpty &&
+                            _currentQuery.isNotEmpty) ...[
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Center(
@@ -697,12 +724,17 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
                                 _closeDropdown();
                               },
                               child: Container(
-                                padding: widget.theme.padding ??
-                                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                padding:
+                                    widget.theme.padding ??
+                                    const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 8,
+                                    ),
                                 decoration: BoxDecoration(
                                   color: widget.value == item
                                       ? widget.theme.itemHighlightColor ??
-                                          Theme.of(context).primaryColor.withValues(alpha: 0.1)
+                                            Theme.of(context).primaryColor
+                                                .withValues(alpha: 0.1)
                                       : null,
                                 ),
                                 child: widget.itemBuilder(item),
@@ -730,7 +762,9 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
         key: _dropdownKey,
         onTap: _toggleDropdown,
         child: Container(
-          padding: widget.theme.padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+          padding:
+              widget.theme.padding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
           decoration: BoxDecoration(
             border: Border.all(
               color: _isOpen
@@ -761,18 +795,20 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>>
                           const SizedBox(width: 8),
                           Text(
                             'Loading...',
-                            style: widget.theme.hintStyle ??
+                            style:
+                                widget.theme.hintStyle ??
                                 TextStyle(color: Colors.grey[600]),
                           ),
                         ],
                       )
                     : widget.value != null
-                        ? widget.itemBuilder(widget.value as T)
-                        : Text(
-                            widget.hint,
-                            style: widget.theme.hintStyle ??
-                                TextStyle(color: Colors.grey[600]),
-                          ),
+                    ? widget.itemBuilder(widget.value as T)
+                    : Text(
+                        widget.hint,
+                        style:
+                            widget.theme.hintStyle ??
+                            TextStyle(color: Colors.grey[600]),
+                      ),
               ),
               Icon(
                 _isOpen ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,

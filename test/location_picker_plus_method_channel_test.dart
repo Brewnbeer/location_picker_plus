@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:location_picker_plus/location_picker_method_channel.dart';
+import 'package:location_picker_plus/location_picker_plus_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelLocationPicker platform = MethodChannelLocationPicker();
-  const MethodChannel channel = MethodChannel('location_picker');
+  const MethodChannel channel = MethodChannel('location_picker_plus');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
