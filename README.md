@@ -4,17 +4,17 @@ A highly customizable Flutter plugin for selecting country, state, and city with
 
 ## Features
 
-✓ **Two Input Modes** - Dropdown with search OR Real-time autocomplete
-✓ **Instant Suggestions** - See suggestions as you type (no Enter key needed)
-✓ **Debounced Performance** - Optimized for smooth typing experience
-✓ **Customizable Themes** - Multiple pre-built themes and full customization support
-✓ **Smart Search** - Built-in search with relevance sorting
-✓ **Flag Emojis & Phone Codes** - Display country flags and phone codes
-✓ **Flexible Layouts** - Horizontal/vertical layouts with responsive design
-✓ **Asset-based Data** - Load location data from JSON assets
-✓ **Enhanced Models** - Rich data models with additional properties
-✓ **Animation Support** - Smooth transitions and animations
-✓ **Accessibility** - Screen reader support and keyboard navigation
+- ✓ **Two Input Modes** - Dropdown with search OR Real-time autocomplete
+- ✓ **Instant Suggestions** - See suggestions as you type (no Enter key needed)
+- ✓ **Debounced Performance** - Optimized for smooth typing experience
+- ✓ **Customizable Themes** - Multiple pre-built themes and full customization support
+- ✓ **Smart Search** - Built-in search with relevance sorting
+- ✓ **Flag Emojis & Phone Codes** - Display country flags and phone codes
+- ✓ **Flexible Layouts** - Horizontal/vertical layouts with responsive design
+- ✓ **Asset-based Data** - Load location data from JSON assets
+- ✓ **Enhanced Models** - Rich data models with additional properties
+- ✓ **Animation Support** - Smooth transitions and animations
+- ✓ **Accessibility** - Screen reader support and keyboard navigation
 
 ## Installation
 
