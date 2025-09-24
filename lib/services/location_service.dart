@@ -1,12 +1,14 @@
 import 'dart:convert';
+
 import 'package:flutter/services.dart';
-import '../models/country_model.dart';
-import '../models/state_model.dart';
-import '../models/city_model.dart';
+import 'package:location_picker_plus/models/city_model.dart';
+import 'package:location_picker_plus/models/country_model.dart';
+import 'package:location_picker_plus/models/state_model.dart';
 
 class LocationService {
   static LocationService? _instance;
-  static LocationService get instance => _instance ??= LocationService._internal();
+  static LocationService get instance =>
+      _instance ??= LocationService._internal();
 
   LocationService._internal();
 
@@ -14,7 +16,9 @@ class LocationService {
   List<StateModel>? _states;
   List<CityModel>? _cities;
 
-  Future<List<CountryModel>> loadCountries({String assetPath = 'packages/location_picker/assets/country.json'}) async {
+  Future<List<CountryModel>> loadCountries({
+    String assetPath = 'packages/location_picker_plus/assets/country.json',
+  }) async {
     if (_countries != null) return _countries!;
 
     try {
@@ -27,7 +31,9 @@ class LocationService {
     }
   }
 
-  Future<List<StateModel>> loadStates({String assetPath = 'packages/location_picker/assets/state.json'}) async {
+  Future<List<StateModel>> loadStates({
+    String assetPath = 'packages/location_picker_plus/assets/state.json',
+  }) async {
     if (_states != null) return _states!;
 
     try {
@@ -40,7 +46,9 @@ class LocationService {
     }
   }
 
-  Future<List<CityModel>> loadCities({String assetPath = 'packages/location_picker/assets/city.json'}) async {
+  Future<List<CityModel>> loadCities({
+    String assetPath = 'packages/location_picker_plus/assets/city.json',
+  }) async {
     if (_cities != null) return _cities!;
 
     try {
@@ -93,21 +101,26 @@ class LocationService {
   List<CountryModel> searchCountries(String query) {
     if (_countries == null) return [];
     final lowerQuery = query.toLowerCase();
-    return _countries!.where((country) =>
-      country.name.toLowerCase().contains(lowerQuery) ||
-      country.sortName.toLowerCase().contains(lowerQuery)
-    ).toList();
+    return _countries!
+        .where(
+          (country) =>
+              country.name.toLowerCase().contains(lowerQuery) ||
+              country.sortName.toLowerCase().contains(lowerQuery),
+        )
+        .toList();
   }
 
   List<StateModel> searchStates(String query, String? countryId) {
     if (_states == null) return [];
     final lowerQuery = query.toLowerCase();
-    var filteredStates = _states!.where((state) =>
-      state.name.toLowerCase().contains(lowerQuery)
+    var filteredStates = _states!.where(
+      (state) => state.name.toLowerCase().contains(lowerQuery),
     );
 
     if (countryId != null) {
-      filteredStates = filteredStates.where((state) => state.countryId == countryId);
+      filteredStates = filteredStates.where(
+        (state) => state.countryId == countryId,
+      );
     }
 
     return filteredStates.toList();
@@ -116,8 +129,8 @@ class LocationService {
   List<CityModel> searchCities(String query, String? stateId) {
     if (_cities == null) return [];
     final lowerQuery = query.toLowerCase();
-    var filteredCities = _cities!.where((city) =>
-      city.name.toLowerCase().contains(lowerQuery)
+    var filteredCities = _cities!.where(
+      (city) => city.name.toLowerCase().contains(lowerQuery),
     );
 
     if (stateId != null) {

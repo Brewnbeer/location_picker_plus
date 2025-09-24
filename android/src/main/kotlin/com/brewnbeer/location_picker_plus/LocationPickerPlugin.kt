@@ -1,4 +1,4 @@
-package com.brewnbeer.location_picker
+package com.brewnbeer.location_picker_plus
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -17,7 +17,7 @@ class LocationPickerPlugin :
     private lateinit var channel: MethodChannel
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "location_picker")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "location_picker_plus")
         channel.setMethodCallHandler(this)
     }
 

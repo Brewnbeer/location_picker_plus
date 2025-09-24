@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import '../themes/location_picker_theme.dart';
+
+import 'package:flutter/material.dart';
+import 'package:location_picker_plus/themes/location_picker_plus_theme.dart';
 
 class AutocompleteDropdown<T> extends StatefulWidget {
   final T? value;
@@ -31,7 +32,8 @@ class AutocompleteDropdown<T> extends StatefulWidget {
   });
 
   @override
-  State<AutocompleteDropdown<T>> createState() => _AutocompleteDropdownState<T>();
+  State<AutocompleteDropdown<T>> createState() =>
+      _AutocompleteDropdownState<T>();
 }
 
 class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
@@ -73,7 +75,9 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
   }
 
   void _updateControllerText() {
-    final text = widget.value != null ? widget.displayTextBuilder(widget.value as T) : '';
+    final text = widget.value != null
+        ? widget.displayTextBuilder(widget.value as T)
+        : '';
     if (_controller.text != text) {
       _controller.text = text;
     }
@@ -191,7 +195,8 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
   }
 
   OverlayEntry _createOverlayEntry() {
-    final RenderBox? renderBox = _textFieldKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? renderBox =
+        _textFieldKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox == null) {
       return OverlayEntry(builder: (_) => const SizedBox.shrink());
     }
@@ -208,7 +213,9 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
 
     double top;
     if (showAbove) {
-      top = position.dy - (widget.theme.maxHeight ?? 200).clamp(0, spaceAbove - 10);
+      top =
+          position.dy -
+          (widget.theme.maxHeight ?? 200).clamp(0, spaceAbove - 10);
     } else {
       top = position.dy + size.height + 4;
     }
@@ -233,14 +240,18 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
             width: size.width,
             child: Material(
               elevation: widget.theme.elevation ?? 8,
-              borderRadius: widget.theme.borderRadius ?? BorderRadius.circular(8),
+              borderRadius:
+                  widget.theme.borderRadius ?? BorderRadius.circular(8),
               child: Container(
                 constraints: BoxConstraints(
                   maxHeight: widget.theme.maxHeight ?? 200,
                 ),
                 decoration: BoxDecoration(
-                  color: widget.theme.dropdownBackgroundColor ?? Theme.of(context).cardColor,
-                  borderRadius: widget.theme.borderRadius ?? BorderRadius.circular(8),
+                  color:
+                      widget.theme.dropdownBackgroundColor ??
+                      Theme.of(context).cardColor,
+                  borderRadius:
+                      widget.theme.borderRadius ?? BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
                   boxShadow: [
                     BoxShadow(
@@ -272,12 +283,18 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
                               _selectSuggestion(item);
                             },
                             child: Container(
-                              padding: widget.theme.padding ??
-                                  const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              padding:
+                                  widget.theme.padding ??
+                                  const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 12,
+                                  ),
                               decoration: BoxDecoration(
                                 color: isSelected
                                     ? widget.theme.itemHighlightColor ??
-                                        Theme.of(context).primaryColor.withValues(alpha: 0.1)
+                                          Theme.of(
+                                            context,
+                                          ).primaryColor.withValues(alpha: 0.1)
                                     : null,
                               ),
                               child: widget.itemBuilder(item),
@@ -309,12 +326,14 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
           controller: _controller,
           focusNode: _focusNode,
           enabled: widget.enabled && !widget.isLoading,
-          decoration: widget.theme.inputDecoration ??
+          decoration:
+              widget.theme.inputDecoration ??
               InputDecoration(
                 hintText: widget.hint,
                 hintStyle: widget.theme.hintStyle,
                 border: const OutlineInputBorder(),
-                contentPadding: widget.theme.padding ??
+                contentPadding:
+                    widget.theme.padding ??
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 suffixIcon: widget.isLoading
                     ? SizedBox(
@@ -331,23 +350,25 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
                         ),
                       )
                     : _controller.text.isNotEmpty
-                        ? IconButton(
-                            icon: Icon(
-                              Icons.clear,
-                              color: widget.theme.iconColor ?? Colors.grey[600],
-                            ),
-                            onPressed: () {
-                              _controller.clear();
-                              widget.onChanged?.call(null);
-                              _hideSuggestions();
-                            },
-                          )
-                        : Icon(
-                            Icons.search,
-                            color: widget.theme.iconColor ?? Colors.grey[600],
-                          ),
+                    ? IconButton(
+                        icon: Icon(
+                          Icons.clear,
+                          color: widget.theme.iconColor ?? Colors.grey[600],
+                        ),
+                        onPressed: () {
+                          _controller.clear();
+                          widget.onChanged?.call(null);
+                          _hideSuggestions();
+                        },
+                      )
+                    : Icon(
+                        Icons.search,
+                        color: widget.theme.iconColor ?? Colors.grey[600],
+                      ),
               ),
-          style: widget.theme.itemTextStyle ?? Theme.of(context).textTheme.bodyMedium,
+          style:
+              widget.theme.itemTextStyle ??
+              Theme.of(context).textTheme.bodyMedium,
         ),
       ),
     );

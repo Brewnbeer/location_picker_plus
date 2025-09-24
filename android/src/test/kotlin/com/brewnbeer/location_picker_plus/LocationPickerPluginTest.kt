@@ -1,4 +1,4 @@
-package com.brewnbeer.location_picker
+package com.brewnbeer.location_picker_plus
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

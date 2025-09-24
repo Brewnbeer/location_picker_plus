@@ -1,10 +1,10 @@
 name: location_picker_plus
-description: A highly customizable Flutter plugin for selecting country, state, and city with autocomplete and dropdown modes.
-version: 1.0.0
-homepage: https://github.com/adityasutar/location_picker
-repository: https://github.com/adityasutar/location_picker
-issue_tracker: https://github.com/adityasutar/location_picker/issues
-documentation: https://github.com/adityasutar/location_picker#readme
+description: A comprehensive Flutter plugin for location selection with dropdown/autocomplete modes AND live GPS location detection with geocoding support.
+version: 2.0.0
+homepage: https://github.com/Brewnbeer/location_picker_plus
+repository: https://github.com/Brewnbeer/location_picker_plus
+issue_tracker: https://github.com/Brewnbeer/location_picker_plus/issues
+documentation: https://github.com/Brewnbeer/location_picker_plus#readme
 
 environment:
   sdk: ^3.9.2
@@ -13,8 +13,8 @@ environment:
 topics:
   - location
   - picker
-  - country
-  - autocomplete
+  - geocoding
+  - gps
   - flutter
 
 platforms:
@@ -32,6 +32,9 @@ dependencies:
     sdk: flutter
   web: ^1.0.0
   plugin_platform_interface: ^2.0.2
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+  permission_handler: ^12.0.1
 
 dev_dependencies:
   flutter_test:
@@ -56,13 +59,13 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.brewnbeer.location_picker
+        package: com.brewnbeer.location_picker_plus
         pluginClass: LocationPickerPlugin
       ios:
         pluginClass: LocationPickerPlugin
       web:
         pluginClass: LocationPickerWeb
-        fileName: location_picker_web.dart
+        fileName: location_picker_plus_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   assets:

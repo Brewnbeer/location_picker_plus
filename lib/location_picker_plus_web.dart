@@ -6,7 +6,7 @@
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:web/web.dart' as web;
 
-import 'location_picker_platform_interface.dart';
+import 'location_picker_plus_platform_interface.dart';
 
 /// A web implementation of the LocationPickerPlatform of the LocationPicker plugin.
 class LocationPickerWeb extends LocationPickerPlatform {

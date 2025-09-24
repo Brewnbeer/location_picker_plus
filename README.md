@@ -1,9 +1,20 @@
-# Location Picker
+# Location Picker Plus
 
-A highly customizable Flutter plugin for selecting country, state, and city with extensive UI customization options.
+A comprehensive Flutter plugin for location selection with **TWO POWERFUL WIDGETS**:
+1. **Traditional Picker** - Dropdown/autocomplete selection from predefined data
+2. **🆕 Live Location Detection** - GPS location detection with geocoding support
+
+## 🚀 Two Widgets, Endless Possibilities
+
+### 📍 LocationPickerWidget (Traditional Selection)
+Select from predefined country, state, and city data with beautiful UI customization.
+
+### 🌍 LocationDetectorWidget (NEW - Live Location)
+Detect current GPS location or search any address with real-time geocoding.
 
 ## Features
 
+### Traditional Location Picker
 - ✓ **Two Input Modes** - Dropdown with search OR Real-time autocomplete
 - ✓ **Instant Suggestions** - See suggestions as you type (no Enter key needed)
 - ✓ **Debounced Performance** - Optimized for smooth typing experience
@@ -16,22 +27,104 @@ A highly customizable Flutter plugin for selecting country, state, and city with
 - ✓ **Animation Support** - Smooth transitions and animations
 - ✓ **Accessibility** - Screen reader support and keyboard navigation
 
+### 🆕 Live Location Detection
+- 🌍 **GPS Location Detection** - Get current location with one tap
+- 🔍 **Address Geocoding** - Search any address and get coordinates
+- 🏠 **Reverse Geocoding** - Convert coordinates to readable addresses
+- 📍 **Forward Geocoding** - Convert addresses to coordinates
+- 🔐 **Auto Permission Handling** - Handles all location permissions automatically
+- ⚡ **High Accuracy GPS** - Configurable accuracy levels
+- 🌐 **Multi-locale Support** - Address detection in multiple languages
+- 📱 **Cross-platform** - Full Android and iOS support
+- 🎛️ **Flexible Modes** - GPS only, search only, or both
+- 🎨 **Full UI Customization** - Match your app's design
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  location_picker: ^0.0.1
+  location_picker_plus: ^2.0.0
+```
+
+### 📱 Platform Setup (for Live Location Features)
+
+#### Android
+Add to `android/app/src/main/AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+#### iOS
+Add to `ios/Runner/Info.plist`:
+```xml
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs location access to detect your current location.</string>
 ```
 
 ## Usage
 
-### Basic Usage
+### 🆕 Live Location Detection
 
+#### Quick Start
 ```dart
-import 'package:location_picker/location_picker.dart';
+import 'package:location_picker_plus/location_picker_plus.dart';
 
+LocationDetectorWidget(
+  mode: LocationDetectorMode.both, // GPS + Address search
+  showCoordinates: true,
+  onLocationChanged: (location) {
+    print('Lat: ${location?.latitude}, Lng: ${location?.longitude}');
+    print('Address: ${location?.fullAddress}');
+    print('City: ${location?.locality}');
+    print('State: ${location?.administrativeArea}');
+    print('Country: ${location?.country}');
+  },
+)
+```
+
+#### GPS Detection Only
+```dart
+LocationDetectorWidget(
+  mode: LocationDetectorMode.currentLocation,
+  onCoordinatesChanged: (lat, lng) {
+    print('Coordinates: $lat, $lng');
+  },
+)
+```
+
+#### Address Search Only
+```dart
+LocationDetectorWidget(
+  mode: LocationDetectorMode.addressSearch,
+  addressSearchHint: 'Enter address, city, or landmark...',
+  onLocationChanged: (location) {
+    // Use detected location data
+  },
+)
+```
+
+#### Advanced Usage with Service
+```dart
+// Direct service usage for custom UI
+LocationDetectorService service = LocationDetectorService.instance;
+
+// Get current location
+LocationModel? location = await service.getCurrentLocationWithAddress();
+print('Current city: ${location?.locality}');
+
+// Search address
+LocationModel? searched = await service.getCoordinatesFromAddress('New York');
+print('NYC coordinates: ${searched?.latitude}, ${searched?.longitude}');
+```
+
+### 📍 Traditional Location Picker
+
+#### Basic Usage
+```dart
 LocationPickerWidget(
   onCountryChanged: (country) {
     print('Selected country: ${country?.name}');
@@ -41,11 +134,15 @@ LocationPickerWidget(
   },
   onCityChanged: (city) {
     print('Selected city: ${city?.name}');
+    // Access latitude/longitude from city data
+    if (city?.latitude != null) {
+      print('City coordinates: ${city?.latitude}, ${city?.longitude}');
+    }
   },
 )
 ```
 
-### Autocomplete Mode (Real-time suggestions as you type)
+#### Autocomplete Mode (Real-time suggestions as you type)
 
 ```dart
 LocationPickerWidget(
@@ -111,6 +208,34 @@ Row(
         showCity: false,
         stateLabel: 'State',
       ),
+    ),
+  ],
+)
+```
+
+## 🔄 Combining Both Widgets
+
+You can use both widgets together for maximum flexibility:
+
+```dart
+Column(
+  children: [
+    // Live location detection
+    LocationDetectorWidget(
+      mode: LocationDetectorMode.currentLocation,
+      onLocationChanged: (location) {
+        // Auto-fill traditional picker based on detected location
+      },
+    ),
+
+    SizedBox(height: 20),
+
+    // Traditional picker for manual selection
+    LocationPickerWidget(
+      useAutocomplete: true,
+      onCountryChanged: (country) {
+        // Handle manual selection
+      },
     ),
   ],
 )
@@ -215,6 +340,39 @@ CityModel(
   isCapital: false,
 )
 ```
+
+### 🆕 LocationModel (Live Location)
+```dart
+LocationModel(
+  latitude: 34.0522,
+  longitude: -118.2437,
+  address: '123 Main St, Los Angeles, CA 90210, USA',
+  street: '123 Main St',
+  locality: 'Los Angeles',        // City
+  administrativeArea: 'CA',       // State
+  country: 'United States',
+  postalCode: '90210',
+  countryCode: 'US',
+)
+```
+
+## 📊 LocationDetectorWidget Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `mode` | `LocationDetectorMode` | Detection mode: `currentLocation`, `addressSearch`, or `both` |
+| `showCoordinates` | `bool` | Show latitude/longitude in results. Default: true |
+| `showFullAddress` | `bool` | Show complete address breakdown. Default: true |
+| `autoDetectOnInit` | `bool` | Auto-detect location on widget load. Default: false |
+| `accuracy` | `LocationAccuracy` | GPS accuracy level. Default: `LocationAccuracy.high` |
+| `timeLimit` | `Duration?` | Max time to wait for location. Default: null |
+| `currentLocationLabel` | `String` | Label for GPS button. Default: 'Current Location' |
+| `addressSearchLabel` | `String` | Label for search field. Default: 'Search Address' |
+| `addressSearchHint` | `String?` | Placeholder for search field |
+| `theme` | `LocationPickerTheme?` | Custom theme for styling |
+| `onLocationChanged` | `Function(LocationModel?)?` | Called when location is detected/searched |
+| `onAddressChanged` | `Function(String)?` | Called when address changes |
+| `onCoordinatesChanged` | `Function(double, double)?` | Called when coordinates change |
 
 ## Contributing
 

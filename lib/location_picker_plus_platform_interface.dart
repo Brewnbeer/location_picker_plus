@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'location_picker_method_channel.dart';
+import 'location_picker_plus_method_channel.dart';
 
 abstract class LocationPickerPlatform extends PlatformInterface {
   /// Constructs a LocationPickerPlatform.
