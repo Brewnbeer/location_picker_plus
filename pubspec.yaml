@@ -1,6 +1,6 @@
 name: location_picker_plus
 description: A comprehensive Flutter plugin for location selection with dropdown/autocomplete modes AND live GPS location detection with geocoding support.
-version: 2.0.0
+version: 2.1.0
 homepage: https://github.com/Brewnbeer/location_picker_plus
 repository: https://github.com/Brewnbeer/location_picker_plus
 issue_tracker: https://github.com/Brewnbeer/location_picker_plus/issues
@@ -35,6 +35,7 @@ dependencies:
   geolocator: ^14.0.2
   geocoding: ^4.0.0
   permission_handler: ^12.0.1
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

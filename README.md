@@ -1,8 +1,9 @@
 # Location Picker Plus
 
-A comprehensive Flutter plugin for location selection with **TWO POWERFUL WIDGETS**:
+A comprehensive Flutter plugin for location selection with **POWERFUL WIDGETS**:
 1. **Traditional Picker** - Dropdown/autocomplete selection from predefined data
 2. **🆕 Live Location Detection** - GPS location detection with geocoding support
+3. **🔥 Unified Widget** - All-in-one widget with smart field management and Google Places
 
 ## 🚀 Two Widgets, Endless Possibilities
 
@@ -39,13 +40,20 @@ Detect current GPS location or search any address with real-time geocoding.
 - 🎛️ **Flexible Modes** - GPS only, search only, or both
 - 🎨 **Full UI Customization** - Match your app's design
 
+### 🔥 NEW v2.1.0 - Smart Field Management
+- 🔒 **Smart Field Locking** - Auto-lock fields when address selected from Google Places
+- 🌏 **Country Restrictions** - Limit dropdown to specific countries (names or ISO codes)
+- 📍 **Address Source Tracking** - Know if address came from Google Places, GPS, or manual entry
+- 🎯 **Conditional Editing** - Google Places = locked, Manual/GPS = editable
+- 👁️ **Visual Indicators** - Clear UI showing when fields are locked for accuracy
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  location_picker_plus: ^2.0.0
+  location_picker_plus: ^2.1.0
 ```
 
 ### 📱 Platform Setup (for Live Location Features)
@@ -119,6 +127,91 @@ print('Current city: ${location?.locality}');
 // Search address
 LocationModel? searched = await service.getCoordinatesFromAddress('New York');
 print('NYC coordinates: ${searched?.latitude}, ${searched?.longitude}');
+```
+
+### 🔥 Unified Location Picker with Smart Field Management (NEW v2.1.0)
+
+The ultimate all-in-one widget combining Google Places, GPS detection, and manual entry with intelligent field management.
+
+#### 🎯 Smart Field Behavior
+- **Google Places Selection** → Fields automatically lock for accuracy
+- **Manual Entry** → All fields remain fully editable
+- **GPS Location** → All fields remain editable
+- **Country Restrictions** → Limit countries in dropdown
+
+#### Quick Start - All Modes
+```dart
+LocationPickerPlusUnifiedWidget(
+  mode: LocationPickerMode.all, // Show all 3 tabs
+  googlePlacesApiKey: 'your-api-key',
+  allowedCountries: ['India', 'United States'], // Optional restriction
+  lockFieldsForGooglePlaces: true, // Default: true
+  onLocationSelected: (location) {
+    print('Selected: ${location?.address}');
+    print('Source: ${location?.addressSource}'); // googlePlaces, manualEntry, or gpsLocation
+
+    if (location?.addressSource == AddressSource.googlePlaces) {
+      print('Address from Google Places - fields are locked');
+    } else {
+      print('Manual/GPS address - fields are editable');
+    }
+  },
+)
+```
+
+#### Google Places Only Mode
+```dart
+LocationPickerPlusUnifiedWidget(
+  mode: LocationPickerMode.googlePlaces,
+  googlePlacesApiKey: 'your-api-key',
+  country: 'US', // Restrict to US addresses
+  placesTypes: ['establishment', 'geocode'],
+  onLocationSelected: (location) {
+    // Google Places result with locked fields in manual entry
+  },
+)
+```
+
+#### Manual Entry with Country Restrictions
+```dart
+LocationPickerPlusUnifiedWidget(
+  mode: LocationPickerMode.manualEntry,
+  allowedCountries: ['IN', 'US', 'CA'], // ISO codes or full names
+  lockFieldsForGooglePlaces: false, // Allow editing Google Places results
+  onLocationSelected: (location) {
+    // Manual entry result - always editable
+  },
+)
+```
+
+#### GPS + Manual Entry (No Google Places)
+```dart
+LocationPickerPlusUnifiedWidget(
+  mode: LocationPickerMode.all,
+  googlePlacesApiKey: null, // Disable Google Places tab
+  autoDetectOnInit: true, // Auto-detect GPS on load
+  allowedCountries: ['India', 'United States'],
+  onLocationSelected: (location) {
+    // GPS or manual entry result
+  },
+)
+```
+
+#### Address Source Tracking
+```dart
+onLocationSelected: (LocationResult? location) {
+  switch (location?.addressSource) {
+    case AddressSource.googlePlaces:
+      print('🌐 From Google Places - High accuracy, fields locked');
+      break;
+    case AddressSource.manualEntry:
+      print('✏️ Manual entry - User can edit all fields');
+      break;
+    case AddressSource.gpsLocation:
+      print('📍 From GPS - Detected location, fields editable');
+      break;
+  }
+}
 ```
 
 ### 📍 Traditional Location Picker
@@ -355,6 +448,46 @@ LocationModel(
   countryCode: 'US',
 )
 ```
+
+### 🔥 LocationResult (NEW v2.1.0 - Unified Widget)
+```dart
+LocationResult(
+  latitude: 34.0522,
+  longitude: -118.2437,
+  address: '123 Main St, Los Angeles, CA 90210, USA',
+  city: 'Los Angeles',
+  state: 'California',
+  country: 'United States',
+  postalCode: '90210',
+  addressSource: AddressSource.googlePlaces, // googlePlaces, manualEntry, or gpsLocation
+)
+```
+
+### AddressSource Enum
+```dart
+enum AddressSource {
+  googlePlaces,  // Address selected from Google Places dropdown
+  manualEntry,   // User manually entered address
+  gpsLocation,   // Address detected from GPS coordinates
+}
+```
+
+## 🔥 LocationPickerPlusUnifiedWidget Parameters (NEW v2.1.0)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `mode` | `LocationPickerMode` | Widget mode: `googlePlaces`, `currentLocation`, `manualEntry`, or `all`. Default: `all` |
+| `googlePlacesApiKey` | `String?` | Google Places API key for address search |
+| `allowedCountries` | `List<String>?` | Restrict countries in dropdown (names or ISO codes like `['IN', 'US']`) |
+| `lockFieldsForGooglePlaces` | `bool` | Lock manual entry fields when Google Places address is selected. Default: `true` |
+| `onLocationSelected` | `Function(LocationResult?)?` | Called when location is selected from any source |
+| `country` | `String?` | Restrict Google Places to specific country (ISO code) |
+| `placesTypes` | `List<String>` | Google Places types filter. Default: `[]` |
+| `placesHintText` | `String` | Google Places search hint. Default: 'Search for a place...' |
+| `useDropdownsForCountryState` | `bool` | Use dropdowns for country/state in manual entry. Default: `true` |
+| `autoDetectOnInit` | `bool` | Auto-detect GPS location on widget load. Default: `false` |
+| `showCoordinates` | `bool` | Show coordinates in location display. Default: `true` |
+| `theme` | `LocationPickerTheme?` | Custom theme for styling |
 
 ## 📊 LocationDetectorWidget Parameters
 

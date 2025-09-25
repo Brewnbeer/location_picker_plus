@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location_picker_plus/location_picker_plus.dart';
 import 'location_detector_demo.dart';
+import 'unified_location_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +60,18 @@ class _LocationPickerPlusDemoState extends State<LocationPickerPlusDemo> {
         title: const Text('Location Picker Demo'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.add_location),
+            tooltip: 'NEW: Unified Location Picker',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UnifiedLocationDemo(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.location_on),
             tooltip: 'Live Location Demo',

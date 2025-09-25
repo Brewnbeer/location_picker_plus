@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:location_picker_plus/themes/location_picker_plus_theme.dart';
+import 'package:location_picker_plus/utils/adaptive_debouncer.dart';
 
 class AutocompleteDropdown<T> extends StatefulWidget {
   final T? value;
@@ -41,10 +42,13 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
   final FocusNode _focusNode = FocusNode();
   List<T> _suggestions = [];
   bool _showSuggestions = false;
-  Timer? _debounceTimer;
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
   final GlobalKey _textFieldKey = GlobalKey();
+
+  // 🚀 BLAZING FAST optimizations
+  late final SearchDebouncer _debouncer = SearchDebouncer();
+  final Map<String, List<T>> _searchCache = {};
 
   @override
   void initState() {
@@ -67,10 +71,11 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
 
   @override
   void dispose() {
-    _debounceTimer?.cancel();
+    _debouncer.dispose();
     _controller.dispose();
     _focusNode.dispose();
     _hideOverlay();
+    _searchCache.clear();
     super.dispose();
   }
 
@@ -86,25 +91,8 @@ class _AutocompleteDropdownState<T> extends State<AutocompleteDropdown<T>> {
   void _onTextChanged() {
     final query = _controller.text;
 
-    // Cancel previous timer
-    _debounceTimer?.cancel();
-
-    // Immediate response for empty queries
-    if (query.isEmpty) {
-      _hideSuggestions();
-      return;
-    }
-
-    // Show suggestions immediately for any length
-    if (query.length <= 2) {
-      _filterSuggestions(query);
-      return;
-    }
-
-    // Debounce for longer queries (shorter delay for better responsiveness)
-    _debounceTimer = Timer(const Duration(milliseconds: 50), () {
-      _filterSuggestions(query);
-    });
+    // 🚀 Use adaptive debouncing for blazing fast search
+    _debouncer.search(query, _filterSuggestions);
   }
 
   void _onFocusChanged() {
