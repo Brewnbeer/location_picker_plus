@@ -1,3 +1,54 @@
+## 2.1.0
+
+### 🚀 Smart Field Management & Country Restrictions
+
+#### New Features
+- ✅ **Smart Field Locking**: Automatically lock city/state/country fields when address is selected from Google Places dropdown
+- ✅ **Country Restrictions**: Restrict countries in dropdown using country names or ISO codes
+- ✅ **Address Source Tracking**: Track whether address came from Google Places, manual entry, or GPS
+- ✅ **Conditional Editing**: Manual entries remain fully editable while Google Places selections are protected
+- ✅ **Visual Indicators**: Clear UI feedback showing when fields are locked for accuracy
+
+#### Enhanced Components
+- 🔄 **LocationResult Model**: Now includes `AddressSource` enum tracking address origin
+- 🔒 **ManualAddressEntryWidget**: Smart field locking and country restriction support
+- 🌍 **LocationPickerPlusUnifiedWidget**: New parameters for country control and field locking
+- 📍 **AddressSource Enum**: `googlePlaces`, `manualEntry`, `gpsLocation` tracking
+
+#### New Parameters
+```dart
+LocationPickerPlusUnifiedWidget(
+  allowedCountries: ['India', 'United States'], // or ['IN', 'US']
+  lockFieldsForGooglePlaces: true, // default: true
+  onLocationSelected: (location) {
+    print('Source: ${location?.addressSource}');
+    // AddressSource.googlePlaces, manualEntry, or gpsLocation
+  },
+)
+```
+
+#### Smart Behavior
+- **Google Places Selection** → Fields automatically lock (city/state/country/postal code)
+- **Manual Entry** → All fields remain fully editable
+- **GPS Location** → All fields remain editable
+- **Country Filtering** → Only allowed countries appear in dropdown
+- **Visual Feedback** → Blue info box shows when fields are locked
+
+#### Technical Improvements
+- 🔧 Fixed all Flutter deprecation warnings (`withOpacity` → `withValues`)
+- 🧹 Removed unused methods and improved code quality
+- 📝 Updated deprecated `value` parameter to `initialValue` in form fields
+- 🎯 Enhanced type safety and null handling
+
+#### Breaking Changes
+- None - fully backward compatible
+- All existing code continues to work unchanged
+
+#### Migration Guide
+- No migration needed for existing implementations
+- New features are opt-in via new parameters
+- `AddressSource` tracking is automatically handled
+
 ## 2.0.0
 
 ### 🚀 Major New Features - Live Location Detection
