@@ -19,6 +19,9 @@ export 'services/google_places_service.dart';
 export 'widgets/google_places_autocomplete_widget.dart';
 export 'widgets/manual_address_entry_widget.dart';
 export 'widgets/location_picker_plus_unified_widget.dart';
+export 'widgets/enhanced_google_places_widget.dart';
+export 'widgets/multi_field_places_widget.dart';
+export 'themes/enhanced_location_theme.dart';
 
 // Import for the screen class
 import 'widgets/location_picker_plus_unified_widget.dart';
