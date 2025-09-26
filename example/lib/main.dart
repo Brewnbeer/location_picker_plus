@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:location_picker_plus/location_picker_plus.dart';
 import 'location_detector_demo.dart';
 import 'unified_location_demo.dart';
+import 'advanced_customization_demo.dart';
+import 'multi_field_places_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,6 +82,30 @@ class _LocationPickerPlusDemoState extends State<LocationPickerPlusDemo> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const LocationDetectorDemo(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.auto_awesome),
+            tooltip: 'NEW: Advanced Customization',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AdvancedCustomizationDemo(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit_location),
+            tooltip: 'NEW: Multi-Field Places',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MultiFieldPlacesDemo(),
                 ),
               );
             },
