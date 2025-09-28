@@ -1,0 +1,64 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
+/pubspec.lock
+**/doc/api/
+.dart_tool/
+.flutter-plugins-dependencies
+/build/
+/coverage/
+
+# API keys and secrets (if any in future)
+*.env
+.env.*
+secrets.yaml
+api_keys.dart
+
+# Test coverage reports
+lcov.info
+
+# Documentation build artifacts
+/doc/api/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Platform-specific build artifacts
+*.dSYM/
+
+# Example app specific (don't publish example internals)
+/example/.flutter-plugins
+/example/.flutter-plugins-dependencies
+/example/build/
+/example/ios/Flutter/App.framework
+/example/ios/Flutter/Flutter.framework
+/example/ios/Flutter/Generated.xcconfig
+/example/ios/Runner/GeneratedPluginRegistrant.*
+/example/android/app/debug
+/example/android/app/profile
+/example/android/app/release
