@@ -1,6 +1,6 @@
 name: location_picker_plus
-description: Advanced Flutter location picker with Google Places API, GPS detection, manual entry, smart field locking, and comprehensive theming. Perfect for address selection with fallback options.
-version: 3.0.0
+description: Advanced Flutter location picker with Google Places API, GPS detection, local database dropdowns, manual entry, smart field locking, and comprehensive theming. Perfect for address selection with multiple input options.
+version: 3.1.0
 homepage: https://github.com/Brewnbeer/location_picker_plus
 repository: https://github.com/Brewnbeer/location_picker_plus
 issue_tracker: https://github.com/Brewnbeer/location_picker_plus/issues

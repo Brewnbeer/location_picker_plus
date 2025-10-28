@@ -1,56 +1,66 @@
 # Location Picker Plus
 
-Advanced Flutter location picker with **Google Places API integration**, GPS detection, manual entry, and comprehensive theming. The ultimate solution for location selection with fallback options.
+A powerful Flutter plugin for address entry with **Google Places API integration**, featuring smart autocomplete, field locking, and comprehensive address parsing. Perfect for forms requiring complete address information.
 
-## 🚀 v3.0.0 - Major Release with Google Places Integration
+## 🚀 v3.1.0 - GPS, Dropdowns & Individual Fields
 
-### 🌟 Three Powerful Widgets for Every Use Case
+### ✨ Single Powerful Widget for Complete Address Entry
 
-#### 📍 LocationPickerWidget
-Traditional dropdown selection from predefined country/state/city data with beautiful customization.
+**CustomStreetAddressField** - An all-in-one address entry widget with:
+- 🔍 **Google Places Autocomplete** - Real-time address search (India & US)
+- 📍 **GPS Location Detection** - One-click current location detection (works WITHOUT Google Places API)
+- 🗺️ **Complete Address Parsing** - Auto-fills street, city, state, country, postal code
+- 🔒 **Smart Field Locking** - Prevents editing when address from Google Places or GPS
+- 🌏 **Coordinate Storage** - Captures latitude/longitude with address
+- 📝 **Manual Entry Support** - Allow users to type addresses manually
+- ⚠️ **Field Validation** - Built-in error display for each field
+- 🎨 **Themeable** - Fully customizable to match your app design
 
-#### 🌍 LocationDetectorWidget
-Live GPS location detection and address geocoding with real-time coordinate conversion.
+**Local Database Dropdown Widgets** - Offline country/state/city selection:
+- ✅ **CountryDropdownField** - 250+ countries with flags and phone codes
+- ✅ **StateDropdownField** - States/provinces filtered by country
+- ✅ **CityDropdownField** - Cities filtered by state with coordinates
+- 🔍 **Searchable** - Instant filtering as you type
+- 🗂️ **Cascading** - Country → State → City selection flow
+- 📱 **Offline** - Works without internet (bundled database)
 
-#### 🔥 LocationPickerPlusUnifiedWidget (NEW v3.0.0)
-**All-in-one widget** combining Google Places Autocomplete, GPS detection, and manual entry with intelligent tab-based interface.
+**Individual Field Widgets** - Use address fields separately:
+- ✅ **StreetAddressField** - Street address field
+- ✅ **CityField** - City field
+- ✅ **StateField** - State field
+- ✅ **CountryField** - Country field
+- ✅ **PostalCodeField** - Postal code field
 
 ## Features
 
-### Traditional Location Picker
-- ✓ **Two Input Modes** - Dropdown with search OR Real-time autocomplete
-- ✓ **Instant Suggestions** - See suggestions as you type (no Enter key needed)
-- ✓ **Debounced Performance** - Optimized for smooth typing experience
-- ✓ **Customizable Themes** - Multiple pre-built themes and full customization support
-- ✓ **Smart Search** - Built-in search with relevance sorting
-- ✓ **Flag Emojis & Phone Codes** - Display country flags and phone codes
-- ✓ **Flexible Layouts** - Horizontal/vertical layouts with responsive design
-- ✓ **Asset-based Data** - Load location data from JSON assets
-- ✓ **Enhanced Models** - Rich data models with additional properties
-- ✓ **Animation Support** - Smooth transitions and animations
-- ✓ **Accessibility** - Screen reader support and keyboard navigation
+### Complete Address Widget
+- ✅ **Google Places Integration** - Search addresses with real-time suggestions (optional)
+- ✅ **GPS Location Detection** - One-click current location with reverse geocoding (works WITHOUT Google API!)
+- ✅ **Multi-Field Support** - Street, City, State, Country, Postal Code
+- ✅ **Coordinate Capture** - Automatically stores latitude and longitude
+- ✅ **Country Restrictions** - Limit searches to specific countries (India & US by default)
+- ✅ **Smart Field Management** - Auto-lock fields from Google Places or GPS data
+- ✅ **Manual Override** - Clear to allow manual address entry
+- ✅ **Field Validation** - Display errors per field with clear visual feedback
+- ✅ **Source Tracking** - Know if address is from Google Places, GPS, or manual entry
+- ✅ **Locked Address Support** - Perfect for business addresses that shouldn't change
+- ✅ **Clean Material Design** - Beautiful, modern UI out of the box
 
-### 🆕 Live Location Detection
-- 🌍 **GPS Location Detection** - Get current location with one tap
-- 🔍 **Address Geocoding** - Search any address and get coordinates
-- 🏠 **Reverse Geocoding** - Convert coordinates to readable addresses
-- 📍 **Forward Geocoding** - Convert addresses to coordinates
-- 🔐 **Auto Permission Handling** - Handles all location permissions automatically
-- ⚡ **High Accuracy GPS** - Configurable accuracy levels
-- 🌐 **Multi-locale Support** - Address detection in multiple languages
-- 📱 **Cross-platform** - Full Android and iOS support
-- 🎛️ **Flexible Modes** - GPS only, search only, or both
-- 🎨 **Full UI Customization** - Match your app's design
+### Local Database Dropdown Widgets
+- ✅ **Offline Operation** - No internet required, uses bundled database
+- ✅ **250+ Countries** - Complete country list with flags and phone codes
+- ✅ **States/Provinces** - Comprehensive state data by country
+- ✅ **Cities** - Thousands of cities worldwide with coordinates
+- ✅ **Searchable** - Type to filter options instantly
+- ✅ **Cascading Selection** - Country → State → City flow
+- ✅ **Rich Data** - Includes capitals, coordinates, currency, and more
 
-### 🚀 NEW v3.0.0 - Google Places Integration
-- 🔍 **Google Places Autocomplete** - Real-time address search with global coverage
-- 🏢 **Business & POI Support** - Find restaurants, hotels, landmarks, and more
-- 📋 **Tabbed Interface** - Clean navigation between Google Places, GPS, and manual entry
-- 🔒 **Smart Field Locking** - Auto-lock fields when address selected from Google Places
-- 🌏 **Country Restrictions** - Limit search results to specific countries
-- 📍 **Address Source Tracking** - Know if address came from Google Places, GPS, or manual entry
-- 🎨 **Enhanced Theming** - Comprehensive theming system with Material and Cupertino themes
-- 📱 **Mobile Optimized** - Touch-friendly interface with responsive design
+### Individual Field Widgets
+- ✅ **Modular Design** - Use only the fields you need
+- ✅ **Custom Layouts** - Arrange fields however you want
+- ✅ **Full Feature Parity** - Same styling and validation as complete widget
+- ✅ **Controller Support** - Full TextEditingController integration
+- ✅ **Easy Integration** - Drop-in replacements for standard TextFields
 
 ## Installation
 
@@ -58,479 +68,476 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  location_picker_plus: ^3.0.0
+  location_picker_plus: ^3.1.0
 ```
 
-### 🗝️ Google Places API Setup (NEW v3.0.0)
+### 🗝️ Google Places API Setup
 
 1. **Get API Key**: Visit [Google Cloud Console](https://console.cloud.google.com/)
 2. **Enable APIs**: Enable "Places API" in your project
 3. **Configure Billing**: Ensure billing is enabled for your project
 4. **Restrict Key** (recommended): Restrict your API key to specific platforms
 
-```dart
-LocationPickerPlusUnifiedWidget(
-  googlePlacesApiKey: 'YOUR_API_KEY_HERE',
-  // ... other parameters
-)
-```
-
-### 📱 Platform Setup (for GPS Location Features)
-
-#### Android
-Add to `android/app/src/main/AndroidManifest.xml`:
-```xml
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.INTERNET" />
-```
-
-#### iOS
-Add to `ios/Runner/Info.plist`:
-```xml
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>This app needs location access to detect your current location.</string>
-```
-
 ## Usage
 
-### 🆕 Live Location Detection
+### Basic Example
 
-#### Quick Start
 ```dart
+import 'package:flutter/material.dart';
 import 'package:location_picker_plus/location_picker_plus.dart';
 
-LocationDetectorWidget(
-  mode: LocationDetectorMode.both, // GPS + Address search
-  showCoordinates: true,
-  onLocationChanged: (location) {
-    print('Lat: ${location?.latitude}, Lng: ${location?.longitude}');
-    print('Address: ${location?.fullAddress}');
-    print('City: ${location?.locality}');
-    print('State: ${location?.administrativeArea}');
-    print('Country: ${location?.country}');
-  },
-)
-```
+class MyAddressForm extends StatefulWidget {
+  @override
+  _MyAddressFormState createState() => _MyAddressFormState();
+}
 
-#### GPS Detection Only
-```dart
-LocationDetectorWidget(
-  mode: LocationDetectorMode.currentLocation,
-  onCoordinatesChanged: (lat, lng) {
-    print('Coordinates: $lat, $lng');
-  },
-)
-```
+class _MyAddressFormState extends State<MyAddressForm> {
+  AddressFormData? _currentAddress;
 
-#### Address Search Only
-```dart
-LocationDetectorWidget(
-  mode: LocationDetectorMode.addressSearch,
-  addressSearchHint: 'Enter address, city, or landmark...',
-  onLocationChanged: (location) {
-    // Use detected location data
-  },
-)
-```
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: CustomStreetAddressField(
+          googleApiKey: 'YOUR_GOOGLE_PLACES_API_KEY',
+          showAllFields: true,
+          onAddressChanged: (addressData) {
+            setState(() {
+              _currentAddress = addressData;
+            });
 
-#### Advanced Usage with Service
-```dart
-// Direct service usage for custom UI
-LocationDetectorService service = LocationDetectorService.instance;
-
-// Get current location
-LocationModel? location = await service.getCurrentLocationWithAddress();
-print('Current city: ${location?.locality}');
-
-// Search address
-LocationModel? searched = await service.getCoordinatesFromAddress('New York');
-print('NYC coordinates: ${searched?.latitude}, ${searched?.longitude}');
-```
-
-### 🔥 Unified Location Picker with Google Places Integration (NEW v3.0.0)
-
-The ultimate all-in-one widget combining Google Places Autocomplete, GPS detection, and manual entry with intelligent tab-based interface and smart field management.
-
-#### 🎯 Smart Field Behavior
-- **Google Places Selection** → Fields automatically lock for accuracy
-- **Manual Entry** → All fields remain fully editable
-- **GPS Location** → All fields remain editable
-- **Country Restrictions** → Limit countries in dropdown
-
-#### Quick Start - All Modes
-```dart
-LocationPickerPlusUnifiedWidget(
-  mode: LocationPickerMode.all, // Show all 3 tabs
-  googlePlacesApiKey: 'your-api-key',
-  allowedCountries: ['India', 'United States'], // Optional restriction
-  lockFieldsForGooglePlaces: true, // Default: true
-  onLocationSelected: (location) {
-    print('Selected: ${location?.address}');
-    print('Source: ${location?.addressSource}'); // googlePlaces, manualEntry, or gpsLocation
-
-    if (location?.addressSource == AddressSource.googlePlaces) {
-      print('Address from Google Places - fields are locked');
-    } else {
-      print('Manual/GPS address - fields are editable');
-    }
-  },
-)
-```
-
-#### Google Places Only Mode
-```dart
-LocationPickerPlusUnifiedWidget(
-  mode: LocationPickerMode.googlePlaces,
-  googlePlacesApiKey: 'your-api-key',
-  country: 'US', // Restrict to US addresses
-  placesTypes: ['establishment', 'geocode'],
-  onLocationSelected: (location) {
-    // Google Places result with locked fields in manual entry
-  },
-)
-```
-
-#### Manual Entry with Country Restrictions
-```dart
-LocationPickerPlusUnifiedWidget(
-  mode: LocationPickerMode.manualEntry,
-  allowedCountries: ['IN', 'US', 'CA'], // ISO codes or full names
-  lockFieldsForGooglePlaces: false, // Allow editing Google Places results
-  onLocationSelected: (location) {
-    // Manual entry result - always editable
-  },
-)
-```
-
-#### GPS + Manual Entry (No Google Places)
-```dart
-LocationPickerPlusUnifiedWidget(
-  mode: LocationPickerMode.all,
-  googlePlacesApiKey: null, // Disable Google Places tab
-  autoDetectOnInit: true, // Auto-detect GPS on load
-  allowedCountries: ['India', 'United States'],
-  onLocationSelected: (location) {
-    // GPS or manual entry result
-  },
-)
-```
-
-#### Address Source Tracking
-```dart
-onLocationSelected: (LocationResult? location) {
-  switch (location?.addressSource) {
-    case AddressSource.googlePlaces:
-      print('🌐 From Google Places - High accuracy, fields locked');
-      break;
-    case AddressSource.manualEntry:
-      print('✏️ Manual entry - User can edit all fields');
-      break;
-    case AddressSource.gpsLocation:
-      print('📍 From GPS - Detected location, fields editable');
-      break;
+            // Access address data
+            print('Street: ${addressData.street}');
+            print('City: ${addressData.city}');
+            print('State: ${addressData.state}');
+            print('Country: ${addressData.country}');
+            print('Postal Code: ${addressData.postalCode}');
+            print('Coordinates: ${addressData.latitude}, ${addressData.longitude}');
+            print('From Google Places: ${addressData.isFromGooglePlaces}');
+          },
+          onPlaceSelected: (place) {
+            // Called when a Google Place is selected
+            print('Selected place: ${place?.address}');
+          },
+        ),
+      ),
+    );
   }
 }
 ```
 
-### 📍 Traditional Location Picker
-
-#### Basic Usage
-```dart
-LocationPickerWidget(
-  onCountryChanged: (country) {
-    print('Selected country: ${country?.name}');
-  },
-  onStateChanged: (state) {
-    print('Selected state: ${state?.name}');
-  },
-  onCityChanged: (city) {
-    print('Selected city: ${city?.name}');
-    // Access latitude/longitude from city data
-    if (city?.latitude != null) {
-      print('City coordinates: ${city?.latitude}, ${city?.longitude}');
-    }
-  },
-)
-```
-
-#### Autocomplete Mode (Real-time suggestions as you type)
+### With Field Validation
 
 ```dart
-LocationPickerWidget(
-  useAutocomplete: true, // Enable autocomplete mode
-  countryHint: 'Type country name...',
-  stateHint: 'Type state name...',
-  cityHint: 'Type city name...',
-  onCountryChanged: (country) {
-    // Handle country selection
-  },
-)
-```
+class _MyFormState extends State<MyForm> {
+  final Map<String, String> _fieldErrors = {};
 
-### Dropdown Mode (Traditional dropdown with search)
-
-```dart
-LocationPickerWidget(
-  useAutocomplete: false, // Traditional dropdown mode
-  theme: LocationPickerTheme.materialTheme().copyWith(
-    showFlags: true,
-    showPhoneCodes: true,
-    borderRadius: BorderRadius.circular(12),
-  ),
-  countryLabel: 'Country',
-  stateLabel: 'State/Province',
-  cityLabel: 'City',
-  onCountryChanged: (country) {
-    // Handle country selection
-  },
-)
-```
-
-### Country Only Picker
-
-```dart
-LocationPickerWidget(
-  useAutocomplete: true, // Or false for dropdown
-  showState: false,
-  showCity: false,
-  countryHint: 'Type country name...',
-  onCountryChanged: (country) {
-    // Handle country selection
-  },
-)
-```
-
-### Horizontal Layout
-
-```dart
-Row(
-  children: [
-    Expanded(
-      child: LocationPickerWidget(
-        showState: false,
-        showCity: false,
-        countryLabel: 'Country',
-      ),
-    ),
-    SizedBox(width: 16),
-    Expanded(
-      child: LocationPickerWidget(
-        showCountry: false,
-        showCity: false,
-        stateLabel: 'State',
-      ),
-    ),
-  ],
-)
-```
-
-## 🔄 Combining Both Widgets
-
-You can use both widgets together for maximum flexibility:
-
-```dart
-Column(
-  children: [
-    // Live location detection
-    LocationDetectorWidget(
-      mode: LocationDetectorMode.currentLocation,
-      onLocationChanged: (location) {
-        // Auto-fill traditional picker based on detected location
+  @override
+  Widget build(BuildContext context) {
+    return CustomStreetAddressField(
+      googleApiKey: 'YOUR_API_KEY',
+      showAllFields: true,
+      fieldErrors: _fieldErrors,
+      onFieldErrorCleared: (fieldKey) {
+        setState(() {
+          _fieldErrors.remove(fieldKey);
+        });
       },
-    ),
-
-    SizedBox(height: 20),
-
-    // Traditional picker for manual selection
-    LocationPickerWidget(
-      useAutocomplete: true,
-      onCountryChanged: (country) {
-        // Handle manual selection
+      onAddressChanged: (addressData) {
+        // Validate
+        if (addressData.street == null || addressData.street!.isEmpty) {
+          setState(() {
+            _fieldErrors['address'] = 'Please enter a valid address';
+          });
+        }
       },
-    ),
-  ],
-)
-```
-
-## Customization
-
-### Available Themes
-
-```dart
-// Default theme
-LocationPickerTheme.defaultTheme()
-
-// Material Design theme
-LocationPickerTheme.materialTheme()
-
-// Cupertino theme
-LocationPickerTheme.cupertinoTheme()
-
-// Custom theme
-LocationPickerTheme(
-  inputDecoration: InputDecoration(
-    border: OutlineInputBorder(),
-    contentPadding: EdgeInsets.all(16),
-  ),
-  dropdownBackgroundColor: Colors.white,
-  itemHighlightColor: Colors.blue.withOpacity(0.1),
-  borderRadius: BorderRadius.circular(8),
-  elevation: 4,
-  showFlags: true,
-  showPhoneCodes: false,
-  maxHeight: 250,
-  animationDuration: Duration(milliseconds: 200),
-)
-```
-
-## Input Modes
-
-### Autocomplete Mode (`useAutocomplete: true`)
-- **Real-time suggestions** appear as you type
-- **No Enter key required** - suggestions show instantly
-- **Debounced for performance** - optimized for smooth typing
-- **Smart relevance sorting** - exact matches first, then starts-with, then contains
-- **Auto-clear functionality** - click X to clear selection
-
-### Dropdown Mode (`useAutocomplete: false`)
-- **Traditional dropdown** with search functionality inside
-- **Click to open** dropdown with search box
-- **Keyboard navigation** support
-- **More familiar UX** for users expecting dropdowns
-
-## Widget Parameters
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `useAutocomplete` | `bool` | Enable autocomplete mode (true) or dropdown mode (false). Default: true |
-| `showCountry` | `bool` | Show country picker. Default: true |
-| `showState` | `bool` | Show state picker. Default: true |
-| `showCity` | `bool` | Show city picker. Default: true |
-| `countryHint` | `String?` | Hint text for country field |
-| `stateHint` | `String?` | Hint text for state field |
-| `cityHint` | `String?` | Hint text for city field |
-| `theme` | `LocationPickerTheme?` | Custom theme for styling |
-| `onCountryChanged` | `Function(CountryModel?)?` | Callback when country is selected |
-| `onStateChanged` | `Function(StateModel?)?` | Callback when state is selected |
-| `onCityChanged` | `Function(CityModel?)?` | Callback when city is selected |
-
-## Models
-
-### CountryModel
-```dart
-CountryModel(
-  id: '1',
-  sortName: 'US',
-  name: 'United States',
-  phoneCode: '1',
-  flagEmoji: '🇺🇸',
-  capital: 'Washington, D.C.',
-  currency: 'USD',
-)
-```
-
-### StateModel
-```dart
-StateModel(
-  id: '1',
-  name: 'California',
-  countryId: '1',
-  stateCode: 'CA',
-  type: 'State',
-)
-```
-
-### CityModel
-```dart
-CityModel(
-  id: '1',
-  name: 'Los Angeles',
-  stateId: '1',
-  latitude: '34.0522',
-  longitude: '-118.2437',
-  isCapital: false,
-)
-```
-
-### 🆕 LocationModel (Live Location)
-```dart
-LocationModel(
-  latitude: 34.0522,
-  longitude: -118.2437,
-  address: '123 Main St, Los Angeles, CA 90210, USA',
-  street: '123 Main St',
-  locality: 'Los Angeles',        // City
-  administrativeArea: 'CA',       // State
-  country: 'United States',
-  postalCode: '90210',
-  countryCode: 'US',
-)
-```
-
-### 🔥 LocationResult (NEW v2.1.0 - Unified Widget)
-```dart
-LocationResult(
-  latitude: 34.0522,
-  longitude: -118.2437,
-  address: '123 Main St, Los Angeles, CA 90210, USA',
-  city: 'Los Angeles',
-  state: 'California',
-  country: 'United States',
-  postalCode: '90210',
-  addressSource: AddressSource.googlePlaces, // googlePlaces, manualEntry, or gpsLocation
-)
-```
-
-### AddressSource Enum
-```dart
-enum AddressSource {
-  googlePlaces,  // Address selected from Google Places dropdown
-  manualEntry,   // User manually entered address
-  gpsLocation,   // Address detected from GPS coordinates
+    );
+  }
 }
 ```
 
-## 🔥 LocationPickerPlusUnifiedWidget Parameters (NEW v3.0.0)
+### Locked Address (for Business Locations)
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `mode` | `LocationPickerMode` | Widget mode: `googlePlaces`, `currentLocation`, `manualEntry`, or `all`. Default: `all` |
-| `googlePlacesApiKey` | `String?` | Google Places API key for address search |
-| `allowedCountries` | `List<String>?` | Restrict countries in dropdown (names or ISO codes like `['IN', 'US']`) |
-| `lockFieldsForGooglePlaces` | `bool` | Lock manual entry fields when Google Places address is selected. Default: `true` |
-| `onLocationSelected` | `Function(LocationResult?)?` | Called when location is selected from any source |
-| `country` | `String?` | Restrict Google Places to specific country (ISO code) |
-| `placesTypes` | `List<String>` | Google Places types filter. Default: `[]` |
-| `placesHintText` | `String` | Google Places search hint. Default: 'Search for a place...' |
-| `useDropdownsForCountryState` | `bool` | Use dropdowns for country/state in manual entry. Default: `true` |
-| `autoDetectOnInit` | `bool` | Auto-detect GPS location on widget load. Default: `false` |
-| `showCoordinates` | `bool` | Show coordinates in location display. Default: `true` |
-| `theme` | `LocationPickerTheme?` | Custom theme for styling |
+```dart
+CustomStreetAddressField(
+  googleApiKey: 'YOUR_API_KEY',
+  isLocked: true,  // Prevents editing
+  initialStreet: '1600 Amphitheatre Parkway',
+  initialCity: 'Mountain View',
+  initialState: 'CA',
+  initialCountry: 'US',
+  initialPostalCode: '94043',
+  initialLatitude: 37.4220,
+  initialLongitude: -122.0841,
+  showAllFields: true,
+)
+```
 
-## 📊 LocationDetectorWidget Parameters
+### Street Address Only (No Additional Fields)
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `mode` | `LocationDetectorMode` | Detection mode: `currentLocation`, `addressSearch`, or `both` |
-| `showCoordinates` | `bool` | Show latitude/longitude in results. Default: true |
-| `showFullAddress` | `bool` | Show complete address breakdown. Default: true |
-| `autoDetectOnInit` | `bool` | Auto-detect location on widget load. Default: false |
-| `accuracy` | `LocationAccuracy` | GPS accuracy level. Default: `LocationAccuracy.high` |
-| `timeLimit` | `Duration?` | Max time to wait for location. Default: null |
-| `currentLocationLabel` | `String` | Label for GPS button. Default: 'Current Location' |
-| `addressSearchLabel` | `String` | Label for search field. Default: 'Search Address' |
-| `addressSearchHint` | `String?` | Placeholder for search field |
-| `theme` | `LocationPickerTheme?` | Custom theme for styling |
-| `onLocationChanged` | `Function(LocationModel?)?` | Called when location is detected/searched |
-| `onAddressChanged` | `Function(String)?` | Called when address changes |
-| `onCoordinatesChanged` | `Function(double, double)?` | Called when coordinates change |
+```dart
+CustomStreetAddressField(
+  googleApiKey: 'YOUR_API_KEY',
+  showAllFields: false,  // Only show street address field
+  hintText: 'Enter delivery address...',
+  onAddressChanged: (addressData) {
+    print('Street only: ${addressData.street}');
+  },
+)
+```
+
+### GPS Location Detection (Works WITHOUT Google Places API!)
+
+```dart
+CustomStreetAddressField(
+  enableLocationPicker: true,  // Enable GPS button
+  showAllFields: true,
+  onAddressChanged: (addressData) {
+    print('Address: ${addressData.street}');
+    print('Coordinates: ${addressData.latitude}, ${addressData.longitude}');
+  },
+  onLocationSelected: (position) {
+    print('GPS detected: ${position?.latitude}, ${position?.longitude}');
+  },
+)
+```
+
+**Note:** GPS location detection uses device GPS + reverse geocoding (via `geocoding` package). It does NOT require a Google Places API key!
+
+### Using Individual Field Widgets
+
+Perfect for custom layouts or when you only need specific fields:
+
+```dart
+class MyCustomForm extends StatelessWidget {
+  final TextEditingController streetController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Just the street address field
+        StreetAddressField(
+          controller: streetController,
+          onChanged: (value) {
+            print('Street: $value');
+          },
+        ),
+
+        SizedBox(height: 16),
+
+        // City and State side by side
+        Row(
+          children: [
+            Expanded(
+              child: CityField(
+                controller: cityController,
+                errorText: cityController.text.isEmpty ? 'Required' : null,
+              ),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: StateField(
+                onChanged: (value) => print('State: $value'),
+              ),
+            ),
+          ],
+        ),
+
+        // Just postal code
+        PostalCodeField(
+          onChanged: (value) => print('Postal: $value'),
+        ),
+      ],
+    );
+  }
+}
+```
+
+**Available Individual Widgets:**
+- `StreetAddressField` - Street address with 2 lines support
+- `CityField` - City input
+- `StateField` - State/Province input
+- `CountryField` - Country input
+- `PostalCodeField` - Postal/ZIP code (numeric keyboard)
+- `AddressTextField` - Generic base widget for custom address fields
+
+### Using Local Database Dropdown Widgets
+
+Perfect for offline country/state/city selection with cascading filters:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:location_picker_plus/location_picker_plus.dart';
+
+class LocationDropdownForm extends StatefulWidget {
+  @override
+  _LocationDropdownFormState createState() => _LocationDropdownFormState();
+}
+
+class _LocationDropdownFormState extends State<LocationDropdownForm> {
+  CountryModel? _selectedCountry;
+  StateModel? _selectedState;
+  CityModel? _selectedCity;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Country Dropdown with flags
+        CountryDropdownField(
+          initialValue: _selectedCountry,
+          onChanged: (country) {
+            setState(() {
+              _selectedCountry = country;
+              _selectedState = null;  // Reset state when country changes
+              _selectedCity = null;   // Reset city when country changes
+            });
+
+            // Access country data
+            print('Country: ${country?.name}');
+            print('Code: ${country?.sortName}');
+            print('Phone Code: ${country?.phoneCode}');
+            print('Flag: ${country?.flagEmoji}');
+          },
+        ),
+
+        SizedBox(height: 16),
+
+        // State Dropdown (filtered by selected country)
+        StateDropdownField(
+          initialValue: _selectedState,
+          countryId: _selectedCountry?.id,  // Filter by country
+          onChanged: (state) {
+            setState(() {
+              _selectedState = state;
+              _selectedCity = null;  // Reset city when state changes
+            });
+
+            print('State: ${state?.name}');
+            print('State Code: ${state?.stateCode}');
+          },
+        ),
+
+        SizedBox(height: 16),
+
+        // City Dropdown (filtered by selected state)
+        CityDropdownField(
+          initialValue: _selectedCity,
+          stateId: _selectedState?.id,  // Filter by state
+          onChanged: (city) {
+            setState(() {
+              _selectedCity = city;
+            });
+
+            print('City: ${city?.name}');
+            print('Coordinates: ${city?.latitude}, ${city?.longitude}');
+            print('Is Capital: ${city?.isCapital}');
+          },
+        ),
+      ],
+    );
+  }
+}
+```
+
+**Dropdown Features:**
+- **Searchable Dialogs** - Type to filter options instantly
+- **Country Flags** - Visual flag emojis for all countries
+- **Cascading Selection** - Selecting country filters states, selecting state filters cities
+- **Rich Data Access** - Phone codes, coordinates, capitals, currency, and more
+- **Offline Database** - No internet required, uses bundled JSON data
+- **Performance Optimized** - Efficient search with thousands of locations
+
+**Available Dropdown Widgets:**
+- `CountryDropdownField` - Select from 250+ countries
+- `StateDropdownField` - Select states/provinces (filtered by country)
+- `CityDropdownField` - Select cities (filtered by state)
+
+**Accessing Location Service Directly:**
+
+```dart
+import 'package:location_picker_plus/location_picker_plus.dart';
+
+// Load all countries
+List<CountryModel> countries = await LocationService.instance.loadCountries();
+
+// Get states by country ID
+List<StateModel> states = await LocationService.instance.getStatesByCountryId(101); // India
+
+// Get cities by state ID
+List<CityModel> cities = await LocationService.instance.getCitiesByStateId(4008); // California
+
+// Access model data
+CountryModel country = countries.first;
+print('${country.name} ${country.flagEmoji}');  // India 🇮🇳
+print('Phone: +${country.phoneCode}');          // Phone: +91
+print('Capital: ${country.capital}');           // Capital: New Delhi
+print('Currency: ${country.currency}');         // Currency: INR
+
+StateModel state = states.first;
+print('${state.name} (${state.stateCode})');   // Maharashtra (MH)
+
+CityModel city = cities.first;
+print('${city.name}');                          // Mumbai
+print('Coords: ${city.latitude}, ${city.longitude}');
+print('Capital: ${city.isCapital}');            // true/false
+```
+
+## Widget Parameters
+
+### CustomStreetAddressField
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `googleApiKey` | `String?` | Google Places API key (optional - not needed for GPS) | null |
+| `enableLocationPicker` | `bool` | Show GPS location button (works without Google API) | false |
+| `initialStreet` | `String?` | Initial street address | null |
+| `initialCity` | `String?` | Initial city | null |
+| `initialState` | `String?` | Initial state | null |
+| `initialCountry` | `String?` | Initial country | null |
+| `initialPostalCode` | `String?` | Initial postal code | null |
+| `initialLatitude` | `double?` | Initial latitude | null |
+| `initialLongitude` | `double?` | Initial longitude | null |
+| `showAllFields` | `bool` | Show city, state, country, postal code fields | true |
+| `isLocked` | `bool` | Lock all fields (for business addresses) | false |
+| `hintText` | `String?` | Hint text for street address field | 'Search for addresses...' |
+| `fieldErrors` | `Map<String, String>?` | Map of field keys to error messages | null |
+| `onAddressChanged` | `ValueChanged<AddressFormData>?` | Called when any address field changes | null |
+| `onPlaceSelected` | `ValueChanged<LocationResult?>?` | Called when Google Place is selected | null |
+| `onLocationSelected` | `ValueChanged<Position?>?` | Called when GPS location is detected | null |
+| `onFieldErrorCleared` | `ValueChanged<String>?` | Called when user starts editing a field with an error | null |
+
+### AddressFormData
+
+```dart
+class AddressFormData {
+  final String? street;
+  final String? city;
+  final String? state;
+  final String? country;
+  final String? postalCode;
+  final double? latitude;
+  final double? longitude;
+  final bool isFromGooglePlaces;
+}
+```
+
+## Field Error Keys
+
+Use these keys in the `fieldErrors` map:
+- `'address'` - Street address field
+- `'city'` - City field
+- `'state'` - State field
+- `'country'` - Country field
+- `'postalCode'` - Postal code field
+
+## Country Restrictions
+
+By default, the widget restricts searches to India (IN) and United States (US). This is configured in the widget and can be modified by editing the source code if you need different countries.
+
+## Customization
+
+The widget uses Material Design theming and respects your app's `Theme`:
+
+```dart
+MaterialApp(
+  theme: ThemeData(
+    primaryColor: Colors.blue,
+    textTheme: TextTheme(...),
+  ),
+  ...
+)
+```
+
+## Requirements
+
+- Flutter SDK: `>=3.3.0`
+- Dart SDK: `^3.9.2`
+- Dependencies:
+  - `geolocator: ^14.0.2`
+  - `http: ^1.2.0`
+
+## Platform Setup
+
+### Android
+
+Add to `android/app/src/main/AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+
+<!-- For GPS location detection -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
+
+### iOS
+
+Add to `ios/Runner/Info.plist`:
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+  <key>NSAllowsArbitraryLoads</key>
+  <true/>
+</dict>
+
+<!-- For GPS location detection -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs your location to auto-fill your address</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>This app needs your location to auto-fill your address</string>
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## Issues
 
-This project is licensed under the MIT License.
+If you encounter any problems, please file an issue on the [GitHub repository](https://github.com/Brewnbeer/location_picker_plus/issues).
 
+## Changelog
+
+### 3.1.0
+- ✨ **NEW**: GPS Location Detection - One-click location with reverse geocoding (works WITHOUT Google API!)
+- ✨ **NEW**: `CountryDropdownField` - Select from 250+ countries with flags
+- ✨ **NEW**: `StateDropdownField` - Select states/provinces by country
+- ✨ **NEW**: `CityDropdownField` - Select cities by state
+- ✨ **NEW**: Individual text field widgets (`StreetAddressField`, `CityField`, `StateField`, `CountryField`, `PostalCodeField`)
+- 🔍 Searchable dropdowns with instant filtering
+- 🗂️ Cascading selection (Country → State → City)
+- 📱 Works completely offline with bundled database
+- 📍 Includes coordinates for cities
+- ⭐ Shows capital cities
+- 🔐 Automatic GPS permission handling for Android & iOS
+- 🟢 Visual indicators for GPS data (green badge)
+- 🔒 Smart field locking for GPS data
+- 📦 Exported `CountryModel`, `StateModel`, `CityModel`, and `LocationService`
+- 🎨 Enhanced UI with color-coded field locking (blue for Google Places, green for GPS)
+- 🐛 Fixed deprecated `withOpacity` calls (now using `withValues`)
+- 📚 Comprehensive documentation and examples
+
+### 3.0.0
+- **BREAKING**: Removed all previous widgets
+- ✨ **NEW**: `CustomStreetAddressField` - Complete address entry widget
+- 🔍 Integrated Google Places API for address autocomplete (optional)
+- 📍 Complete address field support (street, city, state, country, postal code)
+- 🌍 Coordinate capture (latitude, longitude)
+- 🔒 Smart field locking from Google Places data
+- ⚠️ Field validation and error display
+- 🏢 Support for locked business addresses
+- 🎨 Simplified API and improved developer experience
+
+## Author
+
+Brewnbeer Team
+
+## Support
+
+⭐ Star this repository if you find it helpful!

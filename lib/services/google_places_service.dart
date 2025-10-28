@@ -23,7 +23,7 @@ class GooglePlacesService {
   Future<List<PlacePrediction>> getAutocompletePredictions({
     required String query,
     String? sessionToken,
-    String? country, // ISO 3166-1 alpha-2 country code
+    String? country, // ISO 3166-1 alpha-2 country code(s) - single code or pipe-separated for multiple
     List<String> types = const [], // establishment, address, geocode, etc.
   }) async {
     if (!isInitialized) {

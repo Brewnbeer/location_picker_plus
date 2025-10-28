@@ -1,3 +1,79 @@
+## [3.1.0] - 2025-01-XX
+
+### 🎉 New Features - GPS, Dropdowns & Individual Fields
+
+#### 📍 GPS Location Detection (No Google API Required!)
+- ✨ Added `enableLocationPicker` parameter to `CustomStreetAddressField`
+- 🌍 One-click GPS location detection with automatic reverse geocoding
+- 📱 Uses device GPS + `geocoding` package (works completely offline from Google Places API)
+- 🔐 Automatic permission handling for Android & iOS
+- ⚡ Real-time address field population from GPS coordinates
+- 🟢 Visual indicators (green badge) when address is from GPS
+- 🔒 Smart field locking when GPS data is used
+
+#### 🗂️ Local Database Dropdown Fields
+- ✨ **NEW**: `CountryDropdownField` - Select from 250+ countries with flags 🚩
+- ✨ **NEW**: `StateDropdownField` - Select states/provinces by country
+- ✨ **NEW**: `CityDropdownField` - Select cities by state
+- 🔍 Searchable dropdowns with instant filtering
+- 🗂️ Cascading selection (Country → State → City)
+- 📍 Includes coordinates for cities
+- ⭐ Shows capital cities
+- 📱 Works completely offline (bundled database)
+- 🚀 Optimized with search indices and caching
+
+#### 📝 Individual Text Field Widgets
+- ✨ **NEW**: `StreetAddressField` - Street address with 2-line support
+- ✨ **NEW**: `CityField` - City text input
+- ✨ **NEW**: `StateField` - State/Province text input
+- ✨ **NEW**: `CountryField` - Country text input
+- ✨ **NEW**: `PostalCodeField` - Postal/ZIP code (numeric keyboard)
+- ✨ **NEW**: `AddressTextField` - Generic base widget for custom fields
+- 🎨 Consistent Material Design styling
+- ⚠️ Built-in error display support
+- 🎛️ Full TextEditingController integration
+
+### 📦 API Changes
+- Added `CountryModel`, `StateModel`, `CityModel` exports
+- Added `LocationService` export for accessing local database
+- Added all dropdown and individual field widgets to public API
+- Added `enableLocationPicker` parameter to `CustomStreetAddressField`
+- Added `onLocationSelected` callback for GPS detection events
+
+### 🎨 UI Improvements
+- Enhanced field locking indicators with color coding:
+  - 🔵 Blue for Google Places data
+  - 🟢 Green for GPS data
+  - 🟠 Orange for locked business addresses
+- Improved visual feedback during GPS detection
+- Better disabled state styling for all field types
+
+### 📱 Example App Enhancements
+- Added **GPS Location Detection Demo** - Shows GPS in action
+- Added **Dropdown Fields Demo** - Shows local database dropdowns
+- Added **Individual Text Fields Demo** - Shows modular field usage
+- Main demo now has 3 comprehensive examples
+
+### 🐛 Bug Fixes
+- Fixed coordinate preservation in locked address mode
+- Improved field state management when switching between input modes
+- Fixed deprecated `withOpacity` calls (now using `withValues`)
+- Fixed icon references in example app
+
+### 📚 Documentation
+- Comprehensive README updates with all new features
+- Added GPS setup instructions for Android & iOS permissions
+- Added dropdown widgets documentation with examples
+- Added individual fields usage examples
+- Updated API reference with new parameters and widgets
+- Updated changelog section in README
+
+### 🔧 Technical Improvements
+- Better state management for GPS operations
+- Improved error handling for location permissions
+- Optimized dropdown search with lazy loading
+- Enhanced memory efficiency for large location lists
+
 ## 3.0.0
 
 ### 🚀 Major Release - Enhanced Google Places Integration & Unified Experience
